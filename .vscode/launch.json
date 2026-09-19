@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Prompt Oscilloscope Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": ["--extensionDevelopmentPath=${workspaceFolder}/extensions/vscode"],
+      "outFiles": [
+        "${workspaceFolder}/extensions/vscode/dist/**/*.js",
+        "${workspaceFolder}/extensions/vscode/dist/**/*.cjs"
+      ],
+      "preLaunchTask": "Build VS Code Extension"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "name": "prompt-oscilloscope-vscode",
+  "displayName": "Prompt Oscilloscope",
+  "description": "Analyze prompts with TypeSafe Jev inside GitHub Copilot Chat.",
+  "version": "0.1.0",
+  "publisher": "shubhangi013",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shubhangi013/prompt-oscilloscope.git",
+    "directory": "extensions/vscode"
+  },
+  "homepage": "https://github.com/shubhangi013/prompt-oscilloscope/tree/main/extensions/vscode",
+  "bugs": {
+    "url": "https://github.com/shubhangi013/prompt-oscilloscope/issues"
+  },
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Chat",
+    "AI"
+  ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false,
+      "description": "Prompt analysis reads workspace instruction files and sends bounded context to TypeSafe."
+    }
+  },
+  "keywords": [
+    "copilot",
+    "chat",
+    "prompt",
+    "analysis",
+    "jev"
+  ],
+  "main": "./dist/extension.cjs",
+  "activationEvents": [
+    "onChatParticipant:prompt-oscilloscope.oscope",
+    "onCommand:promptOscilloscope.setApiKey",
+    "onCommand:promptOscilloscope.clearApiKey"
+  ],
+  "contributes": {
+    "chatParticipants": [
+      {
+        "id": "prompt-oscilloscope.oscope",
+        "name": "oscope",
+        "fullName": "Prompt Oscilloscope",
+        "description": "Analyze a prompt before sending it to the selected Copilot model.",
+        "isSticky": true,
+        "commands": [
+          {
+            "name": "analyze",
+            "description": "Analyze without invoking the selected model"
+          },
+          {
+            "name": "send",
+            "description": "Send after analysis even when confirmation is recommended"
+          }
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "promptOscilloscope.setApiKey",
+        "title": "Prompt Oscilloscope: Set TypeSafe API Key"
+      },
+      {
+        "command": "promptOscilloscope.clearApiKey",
+        "title": "Prompt Oscilloscope: Clear TypeSafe API Key"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "typecheck": "tsc --noEmit",
+    "validate": "pnpm typecheck && pnpm build",
+    "package": "pnpm build && vsce package --no-dependencies --out dist/prompt-oscilloscope-vscode.vsix"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.95.0",
+    "@vscode/vsce": "^3.6.2",
+    "esbuild": "^0.25.10",
+    "typescript": "5.9.2"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "name": "prompt-oscilloscope",
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.17.1",
+  "description": "Live prompt diagnostics for GitHub Copilot CLI over ACP.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "author": "Shubhangi Choudhary",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shubhangi013/prompt-oscilloscope.git"
+  },
+  "homepage": "https://github.com/shubhangi013/prompt-oscilloscope#readme",
+  "bugs": {
+    "url": "https://github.com/shubhangi013/prompt-oscilloscope/issues"
+  },
+  "keywords": [
+    "copilot",
+    "acp",
+    "prompt-engineering",
+    "terminal"
+  ],
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "bin": {
+    "oscope": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.map",
+    "LICENSE",
+    "README.md",
+    "vendor/typesafe-ai-sdk"
+  ],
+  "bundledDependencies": [
+    "@typesafe-ai/sdk"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "offline": "tsx src/cli.tsx --offline",
+    "demo": "pnpm offline",
+    "dev": "tsx src/cli.tsx",
+    "extension:build": "pnpm --dir extensions/vscode build",
+    "extension:package": "pnpm --dir extensions/vscode package",
+    "extension:typecheck": "pnpm --dir extensions/vscode typecheck",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "start": "node dist/cli.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "pack:check": "pnpm pack --pack-destination .pack-check",
+    "validate": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm extension:typecheck && pnpm test && pnpm build && pnpm extension:build"
+  },
+  "dependencies": {
+    "@agentclientprotocol/sdk": "1.4.0",
+    "@typesafe-ai/sdk": "file:vendor/typesafe-ai-sdk",
+    "ink": "6.3.1",
+    "marked": "9.1.6",
+    "marked-terminal": "6.2.0",
+    "react": "19.1.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.35.0",
+    "@types/node": "24.3.1",
+    "@types/marked-terminal": "6.1.1",
+    "@types/react": "19.1.12",
+    "eslint": "9.35.0",
+    "eslint-config-prettier": "10.1.8",
+    "globals": "16.3.0",
+    "prettier": "3.6.2",
+    "tsx": "4.20.5",
+    "typescript": "5.9.2",
+    "typescript-eslint": "8.42.0",
+    "vitest": "3.2.4"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

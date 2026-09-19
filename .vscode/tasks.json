@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build VS Code Extension",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["--filter", "prompt-oscilloscope-vscode", "run", "build"],
+      "problemMatcher": "$tsc"
+    }
+  ]
+}
