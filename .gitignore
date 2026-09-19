@@ -1,5 +1,7 @@
 node_modules/
 dist/
+!vendor/typesafe-ai-sdk/dist/
+!vendor/typesafe-ai-sdk/dist/**
 coverage/
 .pack-check/
 *.log
